@@ -7,10 +7,7 @@ import hu.lenartl.shogi.game.pieces.Piece;
 import hu.lenartl.shogi.game.pieces.Promoted;
 import hu.lenartl.shogi.game.pieces.normal.*;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class ShogiGameBoard implements GameBoard {
     public static final String PROMOTED_PREFIX = "Promoted";
@@ -25,16 +22,16 @@ public class ShogiGameBoard implements GameBoard {
         this.pieces = new Piece[9][9];
         this.blackHand = new LinkedList<>();
         this.whiteHand = new LinkedList<>();
-        this.initialize();
     }
 
-    private void initialize() {
+    public CurrentGameState initialize() {
         for (byte i = 0; i < 9; i++) {
             for (byte j = 0; j < 9; j++) {
                 Piece piece = generatePiece(i, j);
                 pieces[i][j] = piece;
             }
         }
+        return new CurrentGameState(pieces, blackHand, whiteHand);
     }
 
     private Piece generatePiece(int row, int col) {
@@ -160,5 +157,31 @@ public class ShogiGameBoard implements GameBoard {
 
     public List<Piece> getWhiteHand() {
         return List.copyOf(whiteHand);
+    }
+
+    public Piece[][] getPieces() {
+        return pieces;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShogiGameBoard that = (ShogiGameBoard) o;
+        return Objects.deepEquals(pieces, that.pieces) && Objects.equals(blackHand, that.blackHand) && Objects.equals(whiteHand, that.whiteHand);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Arrays.deepHashCode(pieces), blackHand, whiteHand);
+    }
+
+    @Override
+    public String toString() {
+        return "ShogiGameBoard{" +
+                "whiteHand=" + whiteHand +
+                ", blackHand=" + blackHand +
+                ", boardLayout=" + Arrays.toString(pieces) +
+                '}';
     }
 }

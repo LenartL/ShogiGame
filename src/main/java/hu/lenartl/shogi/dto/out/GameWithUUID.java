@@ -1,7 +1,7 @@
 package hu.lenartl.shogi.dto.out;
 
-import hu.lenartl.shogi.game.ShogiGameBoard;
+import hu.lenartl.shogi.game.move.CurrentGameState;
 
-public record GameWithUUID(ShogiGameBoard shogiGameBoard, String uuid) {
+public record GameWithUUID(CurrentGameState currentGameState, String uuid) {
 
 }

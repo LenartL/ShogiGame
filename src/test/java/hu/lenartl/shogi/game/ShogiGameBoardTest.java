@@ -5,6 +5,7 @@ import hu.lenartl.shogi.game.pieces.Color;
 import hu.lenartl.shogi.game.pieces.Piece;
 import hu.lenartl.shogi.game.pieces.normal.*;
 import hu.lenartl.shogi.game.pieces.promoted.PromotedPawn;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,6 +20,11 @@ class ShogiGameBoardTest {
 
     Map<String, Piece> piecePool = new ShogiGameConfig().shogiPieces();
     ShogiGameBoard board = new ShogiGameBoard(piecePool);
+
+    @BeforeEach
+    void setUp() {
+        board.initialize();
+    }
 
     @ParameterizedTest
     @MethodSource(value = {

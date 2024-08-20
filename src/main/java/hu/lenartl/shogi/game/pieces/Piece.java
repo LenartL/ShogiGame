@@ -33,6 +33,10 @@ public abstract class Piece {
         return color;
     }
 
+    public String getType() {
+        return this.getClass().getSimpleName();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
