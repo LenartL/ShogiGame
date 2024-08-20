@@ -1,0 +1,18 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+logging:
+  level:
+    hu.lenartl: debug
+    org.springframework.web: info
+    org.hibernate: error
+  pattern:
+    console: "%cyan(%d{yyyy-MM-dd HH:mm:ss}) [%green(%thread)] %highlight(%-5level) %yellow(%logger{36}) - %msg%n"
+spring:
+  datasource:
+    url:

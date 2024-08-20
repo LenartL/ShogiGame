@@ -1,0 +1,21 @@
+table {
+  border-collapse: collapse;
+}
+
+td {
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
+  vertical-align: middle;
+  text-align: center;
+  background: darkgoldenrod;
+}
+
+td.black {
+  color: white;
+  background: darkgreen;
+}
+
+.piece {
+  cursor: grab;
+}
