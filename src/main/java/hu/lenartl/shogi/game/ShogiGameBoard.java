@@ -85,7 +85,7 @@ public class ShogiGameBoard implements GameBoard {
         move(from, to);
         var piece = getPiece(to)
                 .orElseThrow(InvalidMoveException::new);
-        if (isPromotable(piece, to)) {
+        if (canPromoteAtTarget(piece, to)) {
             piece = promote(piece);
             setPiece(to, piece);
         }
@@ -102,7 +102,7 @@ public class ShogiGameBoard implements GameBoard {
         return new CurrentGameState(pieces, blackHand, whiteHand);
     }
 
-    private boolean isPromotable(Piece piece, Position targetPosition) {
+    private boolean canPromoteAtTarget(Piece piece, Position targetPosition) {
         Color color;
         int row = targetPosition.row();
         try {
